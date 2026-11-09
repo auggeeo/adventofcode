@@ -8,10 +8,6 @@ for (let box of input.split(/\W+/)) {
   let width = Number(boxDims[1]);
   let height = Number(boxDims[2]);
 
-  let side1 = length * width;
-  let side2 = length * height;
-  let side3 = height * width;
-
   let ribbon = 0;
 
   let oneSideLowest = 0; // idk how to name the variable lmao

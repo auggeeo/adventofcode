@@ -6,6 +6,7 @@
       "name": "2015",
       "devDependencies": {
         "@types/bun": "latest",
+        "bun-types": "^1.4.4",
       },
       "peerDependencies": {
         "typescript": "^7",
