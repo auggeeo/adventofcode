@@ -1,5 +1,5 @@
 {
-  "name": "adventofcode",
+  "name": "adventofcode2015",
   "module": "src/index.ts",
   "type": "module",
   "private": true,
