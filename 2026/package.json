@@ -1,0 +1,13 @@
+{
+  "name": "adventofcode2026",
+  "module": "src/index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "bun-types": "^1.4.4"
+  },
+  "peerDependencies": {
+    "typescript": "^7"
+  }
+}

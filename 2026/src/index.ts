@@ -1,0 +1,1 @@
+console.log("this doesnt run anything but maybe i will make it a catalog for all the puzzles idk");
