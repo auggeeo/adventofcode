@@ -1,54 +1,31 @@
 import { input } from './inputs/d3';
 
-let output: number = 0;
+const pack = (x: number, y: number) => (x + 32768) * 65536 + (y + 32768);
 
-let sx = 0;
-let sy = 0;
-let rx = 0;
-let ry = 0;
-let roboSantaMove = false;
+const visited = new Set<number>([pack(0, 0)]);
 
-let presentsDeliveredIndex: Record<string, number> = {
-  '0-0': 2,
-};
+let sx = 0, sy = 0, rx = 0, ry = 0;
+let roboTurn = false;
 
-for (let char of input) {
-  let x: number = roboSantaMove ? rx : sx;
-  let y: number = roboSantaMove ? ry : sy;
-  switch (char) {
-    case '^':
-      y++;
-      break;
-    case 'v':
-      y--;
-      break;
-    case '>':
-      x++;
-      break;
-    case '<':
-      x--;
-      break;
+for (let i = 0; i < input.length; i++) {
+  let x = roboTurn ? rx : sx;
+  let y = roboTurn ? ry : sy;
+
+  switch (input.charCodeAt(i)) {
+    case 94:  y++; break;
+    case 118: y--; break;
+    case 62:  x++; break;
+    case 60:  x--; break;
   }
 
-  if (presentsDeliveredIndex[x.toString() + '-' + y.toString()] == undefined)
-    presentsDeliveredIndex[x.toString() + '-' + y.toString()] = 0;
+  visited.add(pack(x, y));
 
-  // @ts-ignore
-  presentsDeliveredIndex[x.toString() + '-' + y.toString()]  += 1;
+  if (roboTurn) { rx = x; ry = y; }
+  else          { sx = x; sy = y; }
 
-  if (roboSantaMove) {
-    rx = x;
-    ry = y;
-  } else {
-    sx = x;
-    sy = y;
-  }
-
-  roboSantaMove = !roboSantaMove;
+  roboTurn = !roboTurn;
 }
 
-output = Object.values(presentsDeliveredIndex).length;
-
 console.log(
-  'Houses that were delivered to at least once (with robosanta taking turns): ' + output,
+  `Houses that were delivered to at least once (with robosanta taking turns): ${visited.size}`,
 );
